@@ -259,8 +259,80 @@ footer p.desc{color:var(--muted);font-size:.95rem;margin-top:18px;max-width:300p
 .socials a:hover{border-color:var(--acc);color:var(--acc)}
 
 /* reveal anim */
-.reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(24px) scale(.985);filter:blur(6px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),filter .8s ease-out}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+
+/* page load fade */
+body{animation:page-in .5s ease both}
+@keyframes page-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* scroll progress thread */
+.scroll-thread{position:fixed;top:0;left:0;height:3px;width:100%;z-index:80;
+  background:linear-gradient(90deg,var(--acc),var(--blue));
+  transform:scaleX(0);transform-origin:0 50%;
+  box-shadow:0 0 14px rgba(200,255,77,.5)}
+
+/* cursor aura (fine-pointer devices only) */
+.cursor-aura{position:fixed;top:0;left:0;width:340px;height:340px;border-radius:50%;
+  pointer-events:none;z-index:2;mix-blend-mode:screen;
+  background:radial-gradient(circle,rgba(200,255,77,.10),rgba(91,140,255,.06) 45%,transparent 72%);
+  transform:translate(-50%,-50%);will-change:transform;opacity:0;transition:opacity .4s ease}
+.cursor-aura.live{opacity:1}
+@media(hover:none),(pointer:coarse){.cursor-aura{display:none}}
+
+/* magnetic buttons + tilt cards */
+.btn,.pillar,.svc,.xlink,.stat,.info-block,.about-card{will-change:transform}
+.btn{transition:transform .35s cubic-bezier(.2,.8,.2,1),background .22s,border-color .22s,color .22s}
+.pillar,.svc,.xlink,.stat,.info-block,.about-card{transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s}
+@media(hover:none),(pointer:coarse){
+  .pillar:hover,.svc:hover,.xlink:hover{transform:none !important}
+}
+
+/* underline sweep on links */
+.navlinks a,.foot-col a,.breadcrumb a,.socials a,.info-block .item a{position:relative}
+.navlinks a::after,.foot-col a::after,.breadcrumb a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--acc);
+  transition:right .35s cubic-bezier(.2,.8,.2,1)}
+.navlinks a:hover::after,.navlinks a.active::after,.foot-col a:hover::after,.breadcrumb a:hover::after{right:0}
+
+/* logo micro-bounce */
+.logo .mark{transition:transform .45s cubic-bezier(.34,1.6,.4,1),box-shadow .3s}
+.logo:hover .mark{transform:rotate(-8deg) scale(1.08);box-shadow:0 6px 22px rgba(200,255,77,.35)}
+
+/* marquee edge fade + hover pause */
+.strip{position:relative}
+.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.strip::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)}
+.strip::after{right:0;background:linear-gradient(270deg,var(--ink),transparent)}
+.strip .track:hover{animation-play-state:paused}
+.strip span{transition:color .25s,letter-spacing .25s}
+.strip span:hover{color:var(--text);letter-spacing:.01em}
+
+/* count-up stats */
+.stat .big{font-variant-numeric:tabular-nums}
+
+/* glow pulse for eyebrow + badge dots */
+.eyebrow::before{animation:pulse-line 2.6s ease-in-out infinite}
+@keyframes pulse-line{0%,100%{opacity:1;transform:scaleX(1)}50%{opacity:.45;transform:scaleX(.6)}}
+.orb .chip i{animation:pulse-dot 1.8s ease-in-out infinite}
+.orb .chip.c2 i{animation-delay:.3s}
+.orb .chip.c3 i{animation-delay:.6s}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(200,255,77,.5)}50%{opacity:.5;box-shadow:0 0 0 5px rgba(200,255,77,0)}}
+
+/* button shine sweep */
+.btn-acc{position:relative;overflow:hidden}
+.btn-acc::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(115deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-18deg);transition:left .6s cubic-bezier(.2,.8,.2,1)}
+.btn-acc:hover::before{left:130%}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none;filter:none}
+  .cursor-aura,.scroll-thread{display:none}
+}
 
 @media(max-width:900px){
   .hero-grid,.about,.contact-grid{grid-template-columns:1fr}

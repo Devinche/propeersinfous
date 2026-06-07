@@ -83,6 +83,99 @@ function submitContact(e){
   return false;
 }
 
+/* ---- motion: scroll progress thread ---- */
+function initScrollThread(){
+  var bar=document.createElement('div');
+  bar.className='scroll-thread';
+  document.body.appendChild(bar);
+  function update(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var p=max>0?h.scrollTop/max:0;
+    bar.style.transform='scaleX('+p+')';
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+}
+
+/* ---- motion: cursor aura that eases toward the pointer ---- */
+function initCursorAura(){
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  var aura=document.createElement('div');
+  aura.className='cursor-aura';
+  document.body.appendChild(aura);
+  var tx=0,ty=0,x=0,y=0,started=false;
+  window.addEventListener('mousemove',function(e){
+    tx=e.clientX; ty=e.clientY;
+    if(!started){ x=tx; y=ty; started=true; aura.classList.add('live'); }
+  },{passive:true});
+  window.addEventListener('mouseleave',function(){ aura.classList.remove('live'); });
+  (function tick(){
+    x+=(tx-x)*.12; y+=(ty-y)*.12;
+    aura.style.transform='translate('+x+'px,'+y+'px) translate(-50%,-50%)';
+    requestAnimationFrame(tick);
+  })();
+}
+
+/* ---- motion: magnetic pull on buttons ---- */
+function initMagneticButtons(){
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      var mx=e.clientX-r.left-r.width/2, my=e.clientY-r.top-r.height/2;
+      btn.style.transform='translate('+(mx*.28)+'px,'+(my*.4)+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){ btn.style.transform=''; });
+  });
+}
+
+/* ---- motion: gentle 3D tilt on cards, following the pointer ---- */
+function initTiltCards(){
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  var sel='.pillar,.svc,.xlink,.stat,.info-block,.about-card';
+  document.querySelectorAll(sel).forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect();
+      var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform='perspective(900px) rotateX('+(py*-6)+'deg) rotateY('+(px*8)+'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave',function(){ card.style.transform=''; });
+  });
+}
+
+/* ---- motion: count up the stat numbers when they enter view ---- */
+function initCountUp(){
+  var nodes=document.querySelectorAll('.stat .big');
+  if(!nodes.length) return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      var el=entry.target;
+      var rawHTML=el.innerHTML;
+      var text=el.textContent;
+      var m=text.match(/^([^\d]*)(\d+(?:\.\d+)?)([^\d]*)$/);
+      if(!m){ return; }
+      var prefix=m[1], target=parseFloat(m[2]), suffix=m[3];
+      var decimals=(m[2].split('.')[1]||'').length;
+      var dur=1100, t0=null;
+      function frame(ts){
+        if(t0===null) t0=ts;
+        var p=Math.min((ts-t0)/dur,1);
+        var eased=1-Math.pow(1-p,3);
+        var val=(target*eased).toFixed(decimals);
+        el.textContent=prefix+val+suffix;
+        if(p<1) requestAnimationFrame(frame);
+        else el.innerHTML=rawHTML;
+      }
+      requestAnimationFrame(frame);
+    });
+  },{threshold:.5});
+  nodes.forEach(function(n){ io.observe(n); });
+}
+
 function initSite(){
   var hWrap=document.getElementById('site-header');
   if(hWrap){hWrap.innerHTML=headerHTML(document.body.getAttribute('data-page')||'');}
@@ -113,6 +206,15 @@ function initSite(){
       n.style.padding='20px 24px';n.style.borderBottom='1px solid var(--line)';n.style.gap='18px';
     });
   }
+
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduceMotion){
+    initScrollThread();
+    initCursorAura();
+    initMagneticButtons();
+    initTiltCards();
+  }
+  initCountUp();
 }
 
 if(document.readyState!=='loading'){initSite();}
