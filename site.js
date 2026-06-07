@@ -176,6 +176,21 @@ function initCountUp(){
   nodes.forEach(function(n){ io.observe(n); });
 }
 
+/* ---- motion: trigger demo showcases (charts, traces, chat, funnels) when they scroll into view ---- */
+function initShowcases(){
+  var sel='.demo-chart,.demo-trace,.demo-chat,.demo-funnel';
+  var nodes=document.querySelectorAll(sel);
+  if(!nodes.length) return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      entry.target.classList.add('in');
+    });
+  },{threshold:.35});
+  nodes.forEach(function(n){ io.observe(n); });
+}
+
 function initSite(){
   var hWrap=document.getElementById('site-header');
   if(hWrap){hWrap.innerHTML=headerHTML(document.body.getAttribute('data-page')||'');}
@@ -215,6 +230,7 @@ function initSite(){
     initTiltCards();
   }
   initCountUp();
+  initShowcases();
 }
 
 if(document.readyState!=='loading'){initSite();}
