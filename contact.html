@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | ProPeers Inc.</title>
+<meta name="description" content="Start a project with ProPeers Inc. Tell us what you're working on and we'll come back with a real plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact">
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb reveal"><a href="index.html">Home</a><span class="sep">/</span> Contact</div>
+    <span class="eyebrow reveal">Get in touch</span>
+    <h1 class="reveal">Let's talk about your project.</h1>
+    <p class="lead reveal">Tell us what you're working on. We read every message and we'll come back with a straight answer on whether we're the right fit and what it would take.</p>
+  </div>
+</section>
+
+<section style="padding-top:40px">
+  <div class="wrap contact-grid">
+    <form class="cform reveal" onsubmit="return submitContact(event)">
+      <div class="field">
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="fullname" type="text" placeholder="Jane Smith" required>
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" placeholder="jane@company.com" required>
+      </div>
+      <div class="field">
+        <label for="cf-company">Company</label>
+        <input id="cf-company" name="company" type="text" placeholder="Company name (optional)">
+      </div>
+      <div class="field">
+        <label for="cf-need">What do you need help with?</label>
+        <select id="cf-need" name="need">
+          <option>IT Consulting</option>
+          <option>AI Platforming &amp; Solutions</option>
+          <option>Affiliate Marketing</option>
+          <option>A mix of these</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cf-message">A bit about the project</label>
+        <textarea id="cf-message" name="message" placeholder="What are you trying to build or fix? Any timeline or budget in mind?" required></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-acc">Send message &rarr;</button>
+      </div>
+      <p class="cstatus" id="cstatus"></p>
+    </form>
+
+    <div class="info-block reveal">
+      <span class="badge">&#9679; Usually replies within a day</span>
+      <div class="item">
+        <div class="k">Email</div>
+        <div class="v"><a href="mailto:sales@propeersinfo.com">sales@propeersinfo.com</a></div>
+      </div>
+      <div class="item">
+        <div class="k">Phone</div>
+        <div class="v"><a href="tel:+17817244137">+1 781-724-4137</a></div>
+      </div>
+      <div class="item">
+        <div class="k">Where we are</div>
+        <div class="v">United States</div>
+      </div>
+      <div class="item">
+        <div class="k">Parent company</div>
+        <div class="v"><a href="https://propeersinfo.com" target="_blank" rel="noopener">propeersinfo.com &#8599;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="site.js"></script>
+</body>
+</html>
