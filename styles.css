@@ -188,12 +188,12 @@ svg.ico{width:26px;height:26px;stroke:var(--acc);fill:none;stroke-width:1.7}
 
 /* PROCESS */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:s}
-.step{position:relative;padding-top:30px}
+.step{position:relative;padding-top:66px}
+.step::after{content:"";position:absolute;top:0;left:0;width:34px;height:3px;background:var(--acc);border-radius:2px}
 .step::before{counter-increment:s;content:"0" counter(s);font-family:var(--font-d);
-  font-weight:800;font-size:2.4rem;color:rgba(200,255,77,.18);position:absolute;top:-12px;left:0}
+  font-weight:800;font-size:2.4rem;line-height:1;color:rgba(200,255,77,.18);position:absolute;top:16px;left:0}
 .step h4{font-family:var(--font-d);font-size:1.12rem;margin-bottom:8px;position:relative}
 .step p{color:var(--muted);font-size:.93rem}
-.step::after{content:"";position:absolute;top:6px;left:0;width:30px;height:3px;background:var(--acc);border-radius:2px}
 
 /* PROSE + practice pages */
 .prose{max-width:720px}

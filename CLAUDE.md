@@ -39,12 +39,13 @@ The copy was deliberately humanized. Hold this line on any new or edited text:
 
 ## Contact form
 
-`contact.html` posts to Formspree (see the `action` on the form and
-`submitContact` in `site.js`), which stores submissions in a dashboard and
-emails a copy to `propeersinfoaffiliate@gmail.com`. Until a real Formspree
-endpoint is dropped in (the form ships with a placeholder `your-form-id`
-action), it falls back to opening the visitor's email client instead. See
-README for the setup steps.
+`contact.html` posts to Formspree (`https://formspree.io/f/mvznanjz`, set as
+the `action` on the form; see `submitContact` in `site.js`), which stores
+submissions in a dashboard and emails a copy to
+`propeersinfoaffiliate@gmail.com`. Submission happens via `fetch` with an
+inline confirmation, no email client is opened. If the request fails, it
+falls back to a pre-filled `mailto:`. See README to point it at a different
+Formspree form later.
 
 ## Placeholders to confirm before launch
 

@@ -50,26 +50,20 @@ Any static host works. Easiest options:
 
 ## Contact form
 
-The form on `contact.html` posts to Formspree, which stores every submission in
-a dashboard (acting as your database) and forwards a copy by email to
-`propeersinfoaffiliate@gmail.com`. The JS in `site.js` (`submitContact`) submits
-it via `fetch` and shows an inline confirmation without leaving the page. If the
-endpoint can't be reached, or hasn't been configured yet, it falls back to
-opening the visitor's email app with the message pre-filled, no backend needed.
+The form on `contact.html` is wired to Formspree
+(`https://formspree.io/f/mvznanjz`), which stores every submission in a
+dashboard (acting as the database) and forwards a copy by email to
+`propeersinfoaffiliate@gmail.com`. The JS in `site.js` (`submitContact`)
+submits it via `fetch` and shows an inline confirmation without ever leaving
+the page or opening the visitor's email app. If the request fails for some
+reason, it falls back to a pre-filled `mailto:` so the message still gets
+through.
 
-To finish wiring it up:
-
-1. Create a free account at formspree.io, make a form, and connect/verify
-   `propeersinfoaffiliate@gmail.com` as the recipient. Copy the endpoint, for
-   example `https://formspree.io/f/abcdwxyz`.
-2. In `contact.html`, replace the placeholder form action:
-   ```html
-   <form class="cform" id="cform" action="https://formspree.io/f/abcdwxyz" method="POST" onsubmit="return submitContact(event)">
-   ```
-3. That's it. The `name` attributes Formspree needs are already in place
-   (`fullname`, `email`, `company`, `need`, `message`, plus hidden `_subject`
-   and `_replyto` fields), and submissions will start appearing in your
-   Formspree dashboard and inbox immediately.
+To point it at a different Formspree form later, just swap the `action` URL
+on the `<form id="cform">` tag in `contact.html` for the new endpoint, no
+other changes needed. The `name` attributes Formspree needs are already in
+place (`fullname`, `email`, `company`, `need`, `message`, plus hidden
+`_subject` and `_replyto` fields).
 
 ## Before going live
 
