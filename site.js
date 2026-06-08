@@ -48,11 +48,12 @@ function footerHTML(){
       '</div>'+
     '</div>'+
     '<div class="foot-bottom">'+
-      '<span>&copy; 2026 ProPeers Inc. A subsidiary of Professional Peers Info Services Pvt. Ltd. All rights reserved.</span>'+
+      '<span>&copy; 2026 ProPeers Inc., a US company and the American arm of Professional Peers Info Services. All rights reserved.</span>'+
       '<div class="socials">'+
         '<a href="https://www.facebook.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Facebook">f</a>'+
         '<a href="https://twitter.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Twitter">&#120143;</a>'+
-        '<a href="http://in.linkedin.com/in/propeersinfo" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>'+
+        '<a href="https://www.instagram.com/propeersinfoinc" target="_blank" rel="noopener" aria-label="Instagram">ig</a>'+
+        '<a href="https://www.linkedin.com/in/propeersinfo-inc-03311a415/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>'+
       '</div>'+
     '</div>'+
   '</div></footer>';
