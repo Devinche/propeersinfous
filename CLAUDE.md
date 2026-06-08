@@ -39,14 +39,17 @@ The copy was deliberately humanized. Hold this line on any new or edited text:
 
 ## Contact form
 
-`contact.html` form has no backend. On submit, `site.js` opens the visitor's
-email client addressed to `sales@propeersinfo.com`. To switch to collected
-submissions, point the form at a Formspree endpoint (see README).
+`contact.html` posts to Formspree (see the `action` on the form and
+`submitContact` in `site.js`), which stores submissions in a dashboard and
+emails a copy to `propeersinfoaffiliate@gmail.com`. Until a real Formspree
+endpoint is dropped in (the form ships with a placeholder `your-form-id`
+action), it falls back to opening the visitor's email client instead. See
+README for the setup steps.
 
 ## Placeholders to confirm before launch
 
 - Legal entity name ("ProPeers Inc.").
-- Email `sales@propeersinfo.com` and phone `+1 781-724-4137`.
+- Email `propeersinfoaffiliate@gmail.com` and phone `+1 781-724-4137`.
 - Stats (years, projects, retention) currently reflect the parent company.
 
 ## Conventions

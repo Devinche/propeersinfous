@@ -14,7 +14,7 @@ function headerHTML(active){
       a('contact.html','Contact','contact')+
     '</div>'+
     '<div class="nav-cta">'+
-      '<a href="contact.html" class="btn btn-ghost">Talk to us</a>'+
+      '<a href="tel:+17817244137" class="btn btn-ghost">Talk to us &#9742;</a>'+
       '<a href="contact.html" class="btn btn-acc">Start a project</a>'+
       '<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>'+
     '</div>'+
@@ -42,7 +42,7 @@ function footerHTML(){
         '<a href="https://propeersinfo.com" target="_blank" rel="noopener">Parent Company &#8599;</a>'+
       '</div>'+
       '<div class="foot-col"><h5>Get in touch</h5>'+
-        '<p><a href="mailto:sales@propeersinfo.com">sales@propeersinfo.com</a></p>'+
+        '<p><a href="mailto:propeersinfoaffiliate@gmail.com">propeersinfoaffiliate@gmail.com</a></p>'+
         '<p><a href="tel:+17817244137">+1 781-724-4137</a></p>'+
         '<p>United States</p>'+
       '</div>'+
@@ -58,28 +58,52 @@ function footerHTML(){
   '</div></footer>';
 }
 
-/* contact form -> opens the visitor's email client with the fields filled in.
-   To collect submissions without email, point the <form> at a service like
-   Formspree (set action + method="POST") and remove the onsubmit handler. */
+/* contact form -> submits straight to Formspree, which stores every message in
+   a dashboard (acting as the database) and forwards it by email to
+   propeersinfoaffiliate@gmail.com. Swap the placeholder action URL in
+   contact.html for your real Formspree endpoint once the account is set up
+   (see README). Falls back to opening the visitor's email client if no real
+   endpoint is configured yet, or if the request fails. */
 function submitContact(e){
   e.preventDefault();
-  var el=e.target.elements;
-  var name=(el.fullname.value||'').trim();
-  var email=(el.email.value||'').trim();
-  var company=(el.company.value||'').trim();
-  var need=el.need.value;
-  var message=(el.message.value||'').trim();
-  var subject=encodeURIComponent('Project inquiry from '+(name||'the ProPeers website'));
-  var body=encodeURIComponent(
-    'Name: '+name+'\n'+
-    'Email: '+email+'\n'+
-    'Company: '+company+'\n'+
-    'Interested in: '+need+'\n\n'+
-    message
-  );
+  var form=e.target;
   var status=document.getElementById('cstatus');
-  if(status){status.textContent='Opening your email app with the message ready to send.';}
-  window.location.href='mailto:sales@propeersinfo.com?subject='+subject+'&body='+body;
+  var btn=document.getElementById('cf-submit');
+  var data=new FormData(form);
+
+  function fallbackToEmail(note){
+    var name=(data.get('fullname')||'').toString().trim();
+    var subject=encodeURIComponent('Project inquiry from '+(name||'the ProPeers website'));
+    var body=encodeURIComponent(
+      'Name: '+name+'\n'+
+      'Email: '+(data.get('email')||'')+'\n'+
+      'Company: '+(data.get('company')||'')+'\n'+
+      'Interested in: '+(data.get('need')||'')+'\n\n'+
+      (data.get('message')||'')
+    );
+    if(status){status.textContent=note;}
+    window.location.href='mailto:propeersinfoaffiliate@gmail.com?subject='+subject+'&body='+body;
+  }
+
+  if((form.getAttribute('action')||'').indexOf('your-form-id')!==-1){
+    fallbackToEmail('Opening your email app with the message ready to send. (Connect a Formspree endpoint to collect these automatically instead.)');
+    return false;
+  }
+
+  if(btn){btn.disabled=true; btn.textContent='Sending…';}
+  if(status){status.textContent='Sending your message…';}
+
+  fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+    .then(function(res){
+      if(!res.ok){ throw new Error('bad-response'); }
+      form.reset();
+      if(status){status.textContent='Thanks, that’s in. We read every message and reply within a day.';}
+      if(btn){btn.textContent='Message sent ✓';}
+    })
+    .catch(function(){
+      if(btn){btn.disabled=false; btn.textContent='Send message →';}
+      fallbackToEmail('That didn’t go through, so we opened an email instead. Send it to propeersinfoaffiliate@gmail.com and we’ll pick it up from there.');
+    });
   return false;
 }
 
@@ -191,6 +215,56 @@ function initShowcases(){
   nodes.forEach(function(n){ io.observe(n); });
 }
 
+/* ---- accent switcher: cycles the site's accent color, persisted locally ---- */
+function initAccentSwitch(){
+  var THEMES=[['lime','Lime'],['blue','Blue'],['violet','Violet'],['coral','Coral']];
+  var saved=localStorage.getItem('ppi-accent');
+  var idx=0;
+  for(var i=0;i<THEMES.length;i++){ if(THEMES[i][0]===saved){ idx=i; break; } }
+
+  var fab=document.createElement('button');
+  fab.className='accent-fab';
+  fab.type='button';
+  fab.setAttribute('aria-label','Switch the site accent color');
+  fab.innerHTML='<span class="sw" aria-hidden="true"></span><span class="lab">Accent — '+THEMES[idx][1]+'</span>';
+  var label=fab.querySelector('.lab');
+
+  function apply(i,persist){
+    idx=((i%THEMES.length)+THEMES.length)%THEMES.length;
+    var key=THEMES[idx][0];
+    if(key==='lime'){ document.documentElement.removeAttribute('data-accent'); }
+    else { document.documentElement.setAttribute('data-accent',key); }
+    label.textContent='Accent — '+THEMES[idx][1];
+    if(persist){ localStorage.setItem('ppi-accent',key); }
+  }
+  apply(idx,false);
+  fab.addEventListener('click',function(){ apply(idx+1,true); });
+  document.body.appendChild(fab);
+}
+
+/* ---- FAQ accordion: one panel open at a time, height-animated ---- */
+function initFaq(){
+  var items=document.querySelectorAll('.faq-item');
+  if(!items.length) return;
+  items.forEach(function(item){
+    var btn=item.querySelector('.faq-q');
+    var ans=item.querySelector('.faq-a');
+    btn.addEventListener('click',function(){
+      var willOpen=!item.classList.contains('open');
+      items.forEach(function(other){
+        if(other!==item && other.classList.contains('open')){
+          other.classList.remove('open');
+          other.querySelector('.faq-q').setAttribute('aria-expanded','false');
+          other.querySelector('.faq-a').style.maxHeight='';
+        }
+      });
+      item.classList.toggle('open',willOpen);
+      btn.setAttribute('aria-expanded',String(willOpen));
+      ans.style.maxHeight=willOpen?(ans.scrollHeight+'px'):'';
+    });
+  });
+}
+
 function initSite(){
   var hWrap=document.getElementById('site-header');
   if(hWrap){hWrap.innerHTML=headerHTML(document.body.getAttribute('data-page')||'');}
@@ -231,6 +305,8 @@ function initSite(){
   }
   initCountUp();
   initShowcases();
+  initAccentSwitch();
+  initFaq();
 }
 
 if(document.readyState!=='loading'){initSite();}

@@ -24,7 +24,9 @@
 
 <section style="padding-top:40px">
   <div class="wrap contact-grid">
-    <form class="cform reveal" onsubmit="return submitContact(event)">
+    <form class="cform reveal" id="cform" action="https://formspree.io/f/your-form-id" method="POST" onsubmit="return submitContact(event)">
+      <input type="hidden" name="_subject" value="New project inquiry — ProPeers website">
+      <input type="hidden" name="_replyto" value="propeersinfoaffiliate@gmail.com">
       <div class="field">
         <label for="cf-name">Your name</label>
         <input id="cf-name" name="fullname" type="text" placeholder="Jane Smith" required>
@@ -52,16 +54,16 @@
         <textarea id="cf-message" name="message" placeholder="What are you trying to build or fix? Any timeline or budget in mind?" required></textarea>
       </div>
       <div>
-        <button type="submit" class="btn btn-acc">Send message &rarr;</button>
+        <button type="submit" class="btn btn-acc" id="cf-submit">Send message &rarr;</button>
       </div>
-      <p class="cstatus" id="cstatus"></p>
+      <p class="cstatus" id="cstatus" role="status" aria-live="polite"></p>
     </form>
 
     <div class="info-block reveal">
       <span class="badge">&#9679; Usually replies within a day</span>
       <div class="item">
         <div class="k">Email</div>
-        <div class="v"><a href="mailto:sales@propeersinfo.com">sales@propeersinfo.com</a></div>
+        <div class="v"><a href="mailto:propeersinfoaffiliate@gmail.com">propeersinfoaffiliate@gmail.com</a></div>
       </div>
       <div class="item">
         <div class="k">Phone</div>
@@ -74,6 +76,37 @@
       <div class="item">
         <div class="k">Parent company</div>
         <div class="v"><a href="https://propeersinfo.com" target="_blank" rel="noopener">propeersinfo.com &#8599;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:14px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:24px">
+      <span class="eyebrow">Before you write in</span>
+      <h2>A few things people usually ask first.</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">How fast do you actually reply?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Within a business day, usually sooner. A real person on the team reads every message, there's no bot sorting it into a queue.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Do you take on small projects, or only big ones?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Both. We size the team to the work. Plenty of relationships start with one focused piece before growing into something bigger, and that's fine either way.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Who ends up owning the code and the accounts?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>You do, completely. The code, the IP, the cloud accounts, all of it. We build so your own people can run it without us in the room.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Will I be talking to the people actually doing the work?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Yes. The same senior people who scope the project tend to be the ones who build it, so you're not relaying things through an account manager who has to go ask someone else.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">Can we sign an NDA before sharing details?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>Of course. Send a note through the form or call the number above and we'll get one over before the first real conversation.</p></div>
       </div>
     </div>
   </div>

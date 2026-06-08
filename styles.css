@@ -484,3 +484,47 @@ body{animation:page-in .5s ease both}
   .bento>*,.bento>.b-wide{grid-column:span 1}
   .demo-funnel .stage{grid-template-columns:64px 1fr 44px;gap:10px}
 }
+
+/* ===================================================================
+   ACCENT SWITCHER — lets a visitor retune the site's accent color.
+   Swaps CSS custom properties on the root; persisted in localStorage.
+=================================================================== */
+:root[data-accent="blue"]{--acc:#5b8cff;--acc-deep:#3a64d8}
+:root[data-accent="violet"]{--acc:#b48bff;--acc-deep:#9468ec}
+:root[data-accent="coral"]{--acc:#ff8a68;--acc-deep:#f0623e}
+
+.accent-fab{position:fixed;right:22px;bottom:22px;z-index:65;display:flex;align-items:center;gap:11px;
+  border:1px solid var(--line-2);border-radius:99px;padding:9px 18px 9px 9px;cursor:pointer;
+  background:rgba(13,16,26,.66);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  color:var(--muted);font:600 12.5px/1 var(--font-b);letter-spacing:.01em;
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.7);transition:border-color .25s,color .25s,transform .25s}
+.accent-fab:hover{color:var(--text);border-color:var(--acc);transform:translateY(-2px)}
+.accent-fab .sw{width:30px;height:30px;border-radius:50%;flex:none;position:relative;
+  background:conic-gradient(from 200deg,var(--acc),var(--blue),var(--acc-deep),var(--acc));
+  transition:background .35s ease}
+.accent-fab .sw::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--ink-2)}
+@media(max-width:640px){
+  .accent-fab{right:16px;bottom:16px;padding:9px}
+  .accent-fab span{display:none}
+}
+
+/* ===================================================================
+   FAQ ACCORDION
+=================================================================== */
+.faq{display:flex;flex-direction:column;gap:12px}
+.faq-item{border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,.015);transition:border-color .25s}
+.faq-item.open{border-color:var(--line-2)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:19px 24px;background:none;border:0;color:var(--text);text-align:left;cursor:pointer;
+  font:700 1.02rem/1.4 var(--font-d)}
+.faq-q .plus{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);
+  position:relative;transition:.3s cubic-bezier(.2,.7,.2,1)}
+.faq-q .plus::before,.faq-q .plus::after{content:"";position:absolute;top:50%;left:50%;
+  background:var(--muted);transition:background .25s}
+.faq-q .plus::before{width:11px;height:1.6px;transform:translate(-50%,-50%)}
+.faq-q .plus::after{width:1.6px;height:11px;transform:translate(-50%,-50%)}
+.faq-item.open .faq-q .plus{border-color:var(--acc);transform:rotate(135deg)}
+.faq-item.open .faq-q .plus::before,.faq-item.open .faq-q .plus::after{background:var(--acc)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.faq-a p{padding:0 24px 22px;color:var(--muted);font-size:.97rem;line-height:1.65;max-width:640px}

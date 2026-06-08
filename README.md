@@ -50,21 +50,26 @@ Any static host works. Easiest options:
 
 ## Contact form
 
-By default, submitting the form on `contact.html` opens the visitor's email app
-with all the fields filled into a message to `sales@propeersinfo.com`. That needs
-no backend.
+The form on `contact.html` posts to Formspree, which stores every submission in
+a dashboard (acting as your database) and forwards a copy by email to
+`propeersinfoaffiliate@gmail.com`. The JS in `site.js` (`submitContact`) submits
+it via `fetch` and shows an inline confirmation without leaving the page. If the
+endpoint can't be reached, or hasn't been configured yet, it falls back to
+opening the visitor's email app with the message pre-filled, no backend needed.
 
-To collect submissions in a dashboard instead, use a service like Formspree:
+To finish wiring it up:
 
-1. Create a form at formspree.io and copy your endpoint, for example
-   `https://formspree.io/f/abcdwxyz`.
-2. In `contact.html`, change the opening form tag to:
+1. Create a free account at formspree.io, make a form, and connect/verify
+   `propeersinfoaffiliate@gmail.com` as the recipient. Copy the endpoint, for
+   example `https://formspree.io/f/abcdwxyz`.
+2. In `contact.html`, replace the placeholder form action:
    ```html
-   <form class="cform" action="https://formspree.io/f/abcdwxyz" method="POST">
+   <form class="cform" id="cform" action="https://formspree.io/f/abcdwxyz" method="POST" onsubmit="return submitContact(event)">
    ```
-   (remove the `onsubmit="return submitContact(event)"` attribute).
-3. Add `name` attributes that match what you want in the email. The fields
-   already have them: `fullname`, `email`, `company`, `need`, `message`.
+3. That's it. The `name` attributes Formspree needs are already in place
+   (`fullname`, `email`, `company`, `need`, `message`, plus hidden `_subject`
+   and `_replyto` fields), and submissions will start appearing in your
+   Formspree dashboard and inbox immediately.
 
 ## Before going live
 
@@ -72,7 +77,7 @@ These are placeholders pulled from the parent company. Replace them with the
 real US details:
 
 - Entity name "ProPeers Inc." (confirm the legal name).
-- Contact email `sales@propeersinfo.com` and phone `+1 781-724-4137`.
+- Contact email `propeersinfoaffiliate@gmail.com` and phone `+1 781-724-4137`.
 - The stats on the home and company pages (years, projects, retention) reflect
   the parent company. Confirm what is accurate for the US entity.
 - Add a real US mailing address if you want one shown.
