@@ -218,7 +218,7 @@ function initShowcases(){
 
 /* ---- accent switcher: cycles the site's accent color, persisted locally ---- */
 function initAccentSwitch(){
-  var THEMES=[['lime','Lime'],['blue','Blue'],['violet','Violet'],['coral','Coral']];
+  var THEMES=[['lime','Lime'],['blue','Blue'],['violet','Violet'],['amber','Amber']];
   var saved=localStorage.getItem('ppi-accent');
   var idx=0;
   for(var i=0;i<THEMES.length;i++){ if(THEMES[i][0]===saved){ idx=i; break; } }
