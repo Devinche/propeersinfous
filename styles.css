@@ -446,7 +446,7 @@ body{animation:page-in .5s ease both}
 /* ===================================================================
    BENTO GRID — asymmetric capability grid
 =================================================================== */
-.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:152px;grid-auto-flow:dense;gap:16px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);grid-auto-flow:dense;gap:16px}
 .bento>*{grid-column:span 2}
 .bento>.b-wide{grid-column:span 4}
 .bento>.b-tall{grid-row:span 2}
@@ -477,7 +477,7 @@ body{animation:page-in .5s ease both}
   .showcase,.showcase.flip{grid-template-columns:1fr}
   .showcase.flip .demo-window{order:0}
   .demo-pills{grid-template-columns:1fr 1fr}
-  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:140px}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(140px,auto)}
   .bento>.b-wide{grid-column:span 2}
 }
 @media(max-width:560px){
@@ -530,3 +530,91 @@ body{animation:page-in .5s ease both}
 .faq-item.open .faq-q .plus::before,.faq-item.open .faq-q .plus::after{background:var(--acc)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
 .faq-a p{padding:0 24px 22px;color:var(--muted);font-size:.97rem;line-height:1.65;max-width:640px}
+
+/* ===================================================================
+   PARENT-BRAND MOTIFS — squiggle divider, diamond icon tiles,
+   dash-number card footers (adapted from propeersinfo's site)
+=================================================================== */
+.squig{display:block;margin:34px auto 0;width:120px;height:16px;overflow:visible}
+.squig path{fill:none;stroke:var(--blue);stroke-width:2.4;stroke-linecap:round;
+  stroke-dasharray:240;stroke-dashoffset:240}
+.reveal.in .squig path,.squig.in path{animation:squig-draw 1.1s ease forwards .2s}
+@keyframes squig-draw{to{stroke-dashoffset:0}}
+
+.dia{width:46px;height:46px;flex:none;border-radius:12px;transform:rotate(45deg);
+  background:linear-gradient(135deg,var(--blue),#3a64d8);display:grid;place-items:center;
+  box-shadow:0 10px 26px -10px rgba(91,140,255,.55);transition:.3s}
+.dia svg{width:20px;height:20px;transform:rotate(-45deg);stroke:#fff;fill:none;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dia.g{background:linear-gradient(135deg,var(--acc),var(--acc-deep));box-shadow:0 10px 26px -10px rgba(159,224,91,.55)}
+.dia.g svg{stroke:#0a0d14}
+.dia.a{background:linear-gradient(135deg,var(--amber),var(--amber-deep));box-shadow:0 10px 26px -10px rgba(255,171,56,.55)}
+.dia.a svg{stroke:#0a0d14}
+.b-card:hover .dia{transform:rotate(45deg) scale(1.08)}
+.b-card .dia{position:relative;align-self:flex-start;margin:10px 0 auto 10px}
+
+.dashno{position:relative;display:flex;align-items:center;gap:10px;margin-top:14px;
+  font:700 13px/1 var(--font-b);letter-spacing:.08em;color:var(--blue)}
+.dashno i{width:26px;height:0;border-top:2px dashed var(--blue);opacity:.65}
+
+/* ===================================================================
+   PHONE MOCKUP + FEATURE LIST — "start your build with a pro"
+=================================================================== */
+.phone-sec{display:grid;grid-template-columns:.85fr 1fr;gap:60px;align-items:center}
+.phone{position:relative;width:min(280px,80%);margin:0 auto;aspect-ratio:9/18.5;
+  border-radius:42px;border:1px solid var(--line-2);padding:10px;
+  background:linear-gradient(170deg,var(--panel-2),var(--ink-2));
+  box-shadow:0 50px 100px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.03)}
+.phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);
+  width:86px;height:22px;border-radius:99px;background:var(--ink);z-index:2}
+.phone .screen{position:relative;width:100%;height:100%;border-radius:33px;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  background:
+  radial-gradient(90% 60% at 50% 0%,rgba(91,140,255,.35),transparent 65%),
+  radial-gradient(80% 50% at 50% 110%,rgba(159,224,91,.22),transparent 65%),
+  linear-gradient(165deg,#131c30,#0a0d14)}
+.phone .pmark{width:84px;height:84px;border-radius:24px;background:var(--acc);
+  display:grid;place-items:center;font:800 44px/1 var(--font-d);color:#0a0d14;
+  box-shadow:0 0 60px rgba(159,224,91,.35)}
+.phone .pname{font:700 1.05rem/1.3 var(--font-d);text-align:center;color:var(--text)}
+.phone .pname small{display:block;font:500 .72rem/1.6 var(--font-b);color:var(--muted);
+  letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.phone .pglow{position:absolute;inset:auto -40% -30% -40%;height:55%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(91,140,255,.25),transparent 70%);pointer-events:none}
+
+.featlist{display:flex;flex-direction:column;gap:26px;margin-top:30px}
+.feat{display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start}
+.feat .fic{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;
+  border:1px solid var(--line-2);background:rgba(91,140,255,.1)}
+.feat .fic svg{width:19px;height:19px;stroke:var(--blue);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.feat:nth-child(2n) .fic{background:rgba(159,224,91,.09)}
+.feat:nth-child(2n) .fic svg{stroke:var(--acc)}
+.feat h4{font-family:var(--font-d);font-size:1.06rem}
+.feat p{color:var(--muted);font-size:.93rem;margin-top:4px;max-width:480px}
+
+/* ===================================================================
+   TESTIMONIAL BAND — full-bleed quotes strip
+=================================================================== */
+.quotes-band{position:relative;padding:84px 0 90px;margin-top:30px;overflow:hidden;
+  background:linear-gradient(170deg,rgba(91,140,255,.12),rgba(91,140,255,.04) 55%,transparent),var(--ink-2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quotes-band .bandhead{display:flex;align-items:center;justify-content:center;gap:16px;
+  font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;margin-bottom:44px}
+.quotes-band .bandhead::before,.quotes-band .bandhead::after{content:"~";color:var(--blue);font-size:15px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.quote{position:relative;border-radius:var(--r);padding:28px 26px;overflow:hidden;
+  border:1px solid rgba(91,140,255,.25);
+  background:linear-gradient(150deg,rgba(91,140,255,.2),rgba(91,140,255,.05) 70%);
+  transition:.3s}
+.quote:hover{transform:translateY(-4px);border-color:rgba(91,140,255,.5)}
+.quote .qm{font:800 2.6rem/0.6 var(--font-d);color:var(--blue);display:block;margin-bottom:16px;opacity:.85}
+.quote p{font-size:.96rem;line-height:1.65;color:var(--text)}
+.quote .who{margin-top:18px;font-size:.84rem;color:var(--muted)}
+.quote .who strong{display:block;color:var(--text);font-size:.9rem}
+
+@media(max-width:900px){
+  .phone-sec{grid-template-columns:1fr;gap:44px}
+  .quotes{grid-template-columns:1fr}
+}

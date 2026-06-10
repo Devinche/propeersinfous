@@ -75,3 +75,5 @@ real US details:
 - The stats on the home and company pages (years, projects, retention) reflect
   the parent company. Confirm what is accurate for the US entity.
 - Add a real US mailing address if you want one shown.
+- The three client quotes on the home page are illustrative placeholders.
+  Swap in real testimonials (with permission) before launch.
