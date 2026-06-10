@@ -5,6 +5,11 @@
 function headerHTML(active){
   const a=(href,label,key)=>'<a href="'+href+'"'+(active===key?' class="active"':'')+'>'+label+'</a>';
   return ''+
+  '<div class="annc" id="annc"><div class="wrap">'+
+    '<span>ProPeers Inc. is the new US arm of Professional Peers Info Services.</span>'+
+    '<a href="about.html">Read the story &rarr;</a>'+
+    '<button id="annc-x" aria-label="Dismiss">&times;</button>'+
+  '</div></div>'+
   '<header id="hdr"><div class="wrap"><nav>'+
     '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"> <span class="us">US</span></a>'+
     '<div class="navlinks">'+
@@ -287,6 +292,29 @@ function initSite(){
   var hdr=document.getElementById('hdr');
   function onScroll(){ if(hdr){ hdr.classList.toggle('scrolled', window.scrollY>20);} }
   window.addEventListener('scroll',onScroll); onScroll();
+
+  var annc=document.getElementById('annc');
+  if(annc){
+    if(localStorage.getItem('ppi-annc')==='off'){ annc.remove(); }
+    else{
+      document.getElementById('annc-x').addEventListener('click',function(){
+        annc.remove(); localStorage.setItem('ppi-annc','off');
+      });
+    }
+  }
+
+  document.querySelectorAll('.tabs').forEach(function(tabs){
+    var btns=tabs.querySelectorAll('.tab-btn');
+    var panes=tabs.querySelectorAll('.tab-pane');
+    btns.forEach(function(btn,i){
+      btn.addEventListener('click',function(){
+        btns.forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-selected','false'); });
+        panes.forEach(function(p){ p.classList.remove('on'); });
+        btn.classList.add('on'); btn.setAttribute('aria-selected','true');
+        panes[i].classList.add('on');
+      });
+    });
+  });
 
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });

@@ -112,31 +112,69 @@
 </section>
 
 <section>
-  <div class="wrap showcase reveal">
-    <div class="copy">
+  <div class="wrap">
+    <div class="sec-head reveal">
       <span class="eyebrow">What you get a window into</span>
-      <h2>The same dashboard your team would actually use.</h2>
-      <p>No vague status updates. You get a live view of what's running, what shipped this week, and where the numbers are heading, the same picture we're looking at.</p>
-      <div class="taglist">
-        <span>Live infra status</span><span>Delivery velocity</span><span>Plain-language reporting</span>
-      </div>
+      <h2>The same screens your team would actually use.</h2>
+      <p>No vague status updates. Flip through the views we set up on real engagements: delivery, the AI assistant, and the partner funnel.</p>
     </div>
-    <div class="demo-window">
-      <div class="demo-bar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="url"><i></i> propeers.dashboard / overview</span>
+    <div class="tabs reveal">
+      <div class="tab-row" role="tablist">
+        <button class="tab-btn on" role="tab" aria-selected="true">Delivery dashboard</button>
+        <button class="tab-btn" role="tab" aria-selected="false">AI assistant</button>
+        <button class="tab-btn" role="tab" aria-selected="false">Affiliate funnel</button>
       </div>
-      <div class="demo-body">
-        <div class="demo-pills">
-          <div class="demo-pill"><div class="lab">Uptime</div><div class="val"><i></i> 99.98%</div></div>
-          <div class="demo-pill"><div class="lab">Open tickets</div><div class="val"><i></i> 3</div></div>
-          <div class="demo-pill"><div class="lab">Sprint progress</div><div class="val"><i></i> 82%</div></div>
+      <div class="tab-pane on" role="tabpanel">
+        <div class="demo-window">
+          <div class="demo-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="url"><i></i> propeers.dashboard / overview</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-pills">
+              <div class="demo-pill"><div class="lab">Uptime</div><div class="val"><i></i> 99.98%</div></div>
+              <div class="demo-pill"><div class="lab">Open tickets</div><div class="val"><i></i> 3</div></div>
+              <div class="demo-pill"><div class="lab">Sprint progress</div><div class="val"><i></i> 82%</div></div>
+            </div>
+            <div class="demo-chart" style="--n:7">
+              <i style="--h:.42"></i><i style="--h:.58"></i><i style="--h:.5"></i><i style="--h:.74"></i>
+              <i style="--h:.66"></i><i style="--h:.86"></i><i style="--h:.95"></i>
+            </div>
+            <div class="demo-chart-row"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+          </div>
         </div>
-        <div class="demo-chart" style="--n:7">
-          <i style="--h:.42"></i><i style="--h:.58"></i><i style="--h:.5"></i><i style="--h:.74"></i>
-          <i style="--h:.66"></i><i style="--h:.86"></i><i style="--h:.95"></i>
+      </div>
+      <div class="tab-pane" role="tabpanel">
+        <div class="demo-window">
+          <div class="demo-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="url"><i></i> assistant.internal / support-agent</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-chat">
+              <div class="demo-msg user">Why did the export job fail for the EU account last night?</div>
+              <div class="demo-msg bot">It hit a timeout at 11:42pm UTC. The dataset crossed the 2GB chunk limit introduced in last week's update.</div>
+              <div class="demo-msg user">Can it be re-run safely right now?</div>
+              <div class="demo-msg bot">Yes. Re-run with chunking enabled, or I can flag it to on-call if you'd rather a person confirm first.</div>
+            </div>
+          </div>
         </div>
-        <div class="demo-chart-row"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+      </div>
+      <div class="tab-pane" role="tabpanel">
+        <div class="demo-window">
+          <div class="demo-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="url"><i></i> partners.report / funnel</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-funnel">
+              <div class="stage"><span class="lab">Clicks</span><span class="track"><span class="fill"></span></span><span class="pct">100%</span></div>
+              <div class="stage"><span class="lab">Sign-ups</span><span class="track"><span class="fill"></span></span><span class="pct">71%</span></div>
+              <div class="stage"><span class="lab">Trials</span><span class="track"><span class="fill"></span></span><span class="pct">44%</span></div>
+              <div class="stage"><span class="lab">Paid</span><span class="track"><span class="fill"></span></span><span class="pct">27%</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -183,11 +221,11 @@
     <div class="sec-head reveal" style="margin-bottom:14px">
       <span class="eyebrow">Track record</span>
     </div>
-    <div class="stats" style="margin-top:18px">
-      <div class="stat reveal"><div class="big"><em>19</em></div><div class="lbl">Years experience</div></div>
-      <div class="stat reveal"><div class="big">1000<em>+</em></div><div class="lbl">Projects delivered</div></div>
-      <div class="stat reveal"><div class="big">97<em>%</em></div><div class="lbl">Client retention</div></div>
-      <div class="stat reveal"><div class="big"><em>24/7</em></div><div class="lbl">Support coverage</div></div>
+    <div class="statband reveal" style="margin-top:18px">
+      <div class="stat"><div class="big"><em>19</em></div><div class="lbl">Years experience</div></div>
+      <div class="stat"><div class="big">1000<em>+</em></div><div class="lbl">Projects delivered</div></div>
+      <div class="stat"><div class="big">97<em>%</em></div><div class="lbl">Client retention</div></div>
+      <div class="stat"><div class="big"><em>24/7</em></div><div class="lbl">Support coverage</div></div>
     </div>
   </div>
 </section>
