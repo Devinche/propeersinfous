@@ -2,11 +2,15 @@
    Each page sets <body data-page="..."> and drops
    <div id="site-header"></div> + <div id="site-footer"></div>. */
 
+/* Brand mark: stylized "P" ring + dot, shared by the header, footer,
+   and any in-page mockups. */
+const LOGO_SVG='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8 A42 42 0 1 1 27 83" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round"/><circle cx="42" cy="50" r="14" fill="currentColor"/></svg>';
+
 function headerHTML(active){
   const a=(href,label,key)=>'<a href="'+href+'"'+(active===key?' class="active"':'')+'>'+label+'</a>';
   return ''+
   '<header id="hdr"><div class="wrap"><nav>'+
-    '<a href="index.html" class="logo"><span class="mark">P</span> ProPeers <span class="us">US</span></a>'+
+    '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span> ProPeers <span class="us">US</span></a>'+
     '<div class="navlinks">'+
       a('what-we-do.html','What We Do','whatwedo')+
       a('about.html','Company','company')+
@@ -26,7 +30,7 @@ function footerHTML(){
   '<footer><div class="wrap">'+
     '<div class="foot-grid">'+
       '<div>'+
-        '<a href="index.html" class="logo"><span class="mark">P</span> ProPeers <span class="us">US</span></a>'+
+        '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span> ProPeers <span class="us">US</span></a>'+
         '<p class="desc">ProPeers Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
       '</div>'+
       '<div class="foot-col"><h5>Practices</h5>'+
