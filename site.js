@@ -312,6 +312,10 @@ function initSite(){
         panes.forEach(function(p){ p.classList.remove('on'); });
         btn.classList.add('on'); btn.setAttribute('aria-selected','true');
         panes[i].classList.add('on');
+        // demos in hidden panes never intersect, so kick their animation here
+        panes[i].querySelectorAll('.demo-chart,.demo-trace,.demo-chat,.demo-funnel').forEach(function(d){
+          requestAnimationFrame(function(){ d.classList.add('in'); });
+        });
       });
     });
   });
