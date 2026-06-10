@@ -10,7 +10,7 @@ function headerHTML(active){
   const a=(href,label,key)=>'<a href="'+href+'"'+(active===key?' class="active"':'')+'>'+label+'</a>';
   return ''+
   '<header id="hdr"><div class="wrap"><nav>'+
-    '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span> ProPeers <span class="us">US</span></a>'+
+    '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span><span class="word">ropeers</span> <span class="us">US</span></a>'+
     '<div class="navlinks">'+
       a('what-we-do.html','What We Do','whatwedo')+
       a('about.html','Company','company')+
@@ -30,7 +30,7 @@ function footerHTML(){
   '<footer><div class="wrap">'+
     '<div class="foot-grid">'+
       '<div>'+
-        '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span> ProPeers <span class="us">US</span></a>'+
+        '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span><span class="word">ropeers</span> <span class="us">US</span></a>'+
         '<p class="desc">ProPeers Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
       '</div>'+
       '<div class="foot-col"><h5>Practices</h5>'+
@@ -128,23 +128,36 @@ function initScrollThread(){
   update();
 }
 
+/* ---- intro: the logo draws itself on black before the first paint ---- */
+function initIntro(){
+  if(sessionStorage.getItem('ppi-intro')) return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  sessionStorage.setItem('ppi-intro','1');
+  var o=document.createElement('div');
+  o.className='intro';
+  o.innerHTML='<svg viewBox="0 0 100 100" aria-hidden="true">'+
+    '<path class="ring" d="M50 8 A42 42 0 1 1 27 83" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round"/>'+
+    '<circle class="dot" cx="42" cy="50" r="14" fill="currentColor"/></svg>';
+  document.body.appendChild(o);
+  document.body.classList.add('intro-hold');
+  setTimeout(function(){
+    o.classList.add('out');
+    document.body.classList.remove('intro-hold');
+    setTimeout(function(){ o.remove(); },650);
+  },1500);
+}
+
 /* ---- motion: cursor aura that eases toward the pointer ---- */
 function initCursorAura(){
   if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   var aura=document.createElement('div');
   aura.className='cursor-aura';
   document.body.appendChild(aura);
-  var tx=0,ty=0,x=0,y=0,started=false;
   window.addEventListener('mousemove',function(e){
-    tx=e.clientX; ty=e.clientY;
-    if(!started){ x=tx; y=ty; started=true; aura.classList.add('live'); }
+    aura.classList.add('live');
+    aura.style.transform='translate('+e.clientX+'px,'+e.clientY+'px) translate(-50%,-50%)';
   },{passive:true});
   window.addEventListener('mouseleave',function(){ aura.classList.remove('live'); });
-  (function tick(){
-    x+=(tx-x)*.12; y+=(ty-y)*.12;
-    aura.style.transform='translate('+x+'px,'+y+'px) translate(-50%,-50%)';
-    requestAnimationFrame(tick);
-  })();
 }
 
 /* ---- motion: magnetic pull on buttons ---- */
@@ -271,6 +284,7 @@ function initFaq(){
 }
 
 function initSite(){
+  initIntro();
   var hWrap=document.getElementById('site-header');
   if(hWrap){hWrap.innerHTML=headerHTML(document.body.getAttribute('data-page')||'');}
   var fWrap=document.getElementById('site-footer');

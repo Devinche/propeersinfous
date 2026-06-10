@@ -21,7 +21,9 @@ step, no framework, no package.json. It is meant to be served as static files.
 
 ## Design
 
-- Dark theme. Deep ink background, lime accent (`--acc`), blue secondary.
+- Dark theme. Deep ink background with one green accent (`--acc`), everything
+  else neutral ink/gray. Keep the palette to this single accent; `--blue` and
+  `--amber` exist only for the accent-switcher themes.
 - Fonts: Bricolage Grotesque for headings, Hanken Grotesk for body, loaded from
   Google Fonts in each page head.
 - Keep the existing look unless asked to change it.
