@@ -6,9 +6,9 @@ step, no framework, no package.json. It is meant to be served as static files.
 
 ## Architecture
 
-- Eight pages: `index.html`, `what-we-do.html`, `it-consulting.html`,
+- Nine pages: `index.html`, `what-we-do.html`, `it-consulting.html`,
   `ai-solutions.html`, `affiliate-marketing.html`, `about.html`,
-  `approach.html`, `contact.html`.
+  `approach.html`, `contact.html`, `connect.html`.
 - `styles.css` is the only stylesheet. All design tokens live in `:root` as CSS
   variables (`--ink`, `--acc`, fonts, etc.). Reuse these variables. Do not
   hardcode colors.
@@ -17,7 +17,8 @@ step, no framework, no package.json. It is meant to be served as static files.
   placeholders, and `site.js` fills them on load. To change the nav or footer,
   edit `site.js` only, never the individual pages.
 - Each page sets `<body data-page="...">` so `site.js` can highlight the active
-  nav link. Valid values: `home`, `whatwedo`, `company`, `approach`, `contact`.
+  nav link. Valid values: `home`, `whatwedo`, `company`, `approach`, `contact`,
+  `connect`.
 
 ## Design
 

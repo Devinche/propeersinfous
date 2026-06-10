@@ -246,10 +246,28 @@ footer p.desc{color:var(--muted);font-size:.95rem;margin-top:18px;max-width:300p
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;
   margin-top:48px;padding-top:26px;border-top:1px solid var(--line);
   color:var(--muted-2);font-size:.85rem;flex-wrap:wrap;gap:14px}
+.social-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.social-card{background:var(--ink-2);padding:34px 28px;display:flex;flex-direction:column;
+  align-items:flex-start;gap:12px;transition:.25s;color:var(--text)}
+.social-card:hover{background:var(--panel-2)}
+.social-card .sc-ico{width:48px;height:48px;border-radius:var(--r);display:grid;place-items:center;
+  border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);
+  background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}
+.social-card .sc-ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.social-card h4{font-family:var(--font-d);font-size:1.1rem;font-weight:700}
+.social-card p{color:var(--muted);font-size:.9rem;margin:0}
+.social-card .sc-go{margin-top:auto;color:var(--acc);font-weight:700;font-size:.85rem;padding-top:8px}
+@media(max-width:900px){.social-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.social-cards{grid-template-columns:1fr}}
+
 .socials{display:flex;gap:10px}
 .socials a{width:36px;height:36px;border:1px solid var(--line-2);border-radius:9px;
-  display:grid;place-items:center;color:var(--muted)}
+  display:grid;place-items:center;color:var(--muted);transition:.2s}
 .socials a:hover{border-color:var(--acc);color:var(--acc)}
+.socials svg{width:17px;height:17px;stroke:currentColor;fill:none;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* reveal anim */
 .reveal{opacity:0;transform:translateY(24px) scale(.985);filter:blur(6px);

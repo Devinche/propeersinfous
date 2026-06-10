@@ -19,7 +19,7 @@ function headerHTML(active){
       a('contact.html','Contact','contact')+
     '</div>'+
     '<div class="nav-cta">'+
-      '<a href="tel:+17817244137" class="btn btn-ghost">Talk to us &#9742;</a>'+
+      '<a href="connect.html" class="btn btn-ghost">Connect</a>'+
       '<a href="contact.html" class="btn btn-acc">Start a project</a>'+
       '<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>'+
     '</div>'+
@@ -55,10 +55,10 @@ function footerHTML(){
     '<div class="foot-bottom">'+
       '<span>&copy; 2026 ProPeers Inc., a US company and the American arm of Professional Peers Info Services. All rights reserved.</span>'+
       '<div class="socials">'+
-        '<a href="https://www.facebook.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Facebook">f</a>'+
-        '<a href="https://twitter.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Twitter">&#120143;</a>'+
-        '<a href="https://www.instagram.com/propeersinfoinc" target="_blank" rel="noopener" aria-label="Instagram">ig</a>'+
-        '<a href="https://www.linkedin.com/in/propeersinfo-inc-03311a415/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>'+
+        '<a href="https://www.facebook.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>'+
+        '<a href="https://twitter.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>'+
+        '<a href="https://www.instagram.com/propeersinfoinc" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>'+
+        '<a href="https://www.linkedin.com/in/propeersinfo-inc-03311a415/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>'+
       '</div>'+
     '</div>'+
   '</div></footer>';
