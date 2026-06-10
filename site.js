@@ -11,7 +11,7 @@ function headerHTML(active){
     '<button id="annc-x" aria-label="Dismiss">&times;</button>'+
   '</div></div>'+
   '<header id="hdr"><div class="wrap"><nav>'+
-    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"> <span class="us">US</span></a>'+
+    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"></a>'+
     '<div class="navlinks">'+
       a('what-we-do.html','What We Do','whatwedo')+
       a('about.html','Company','company')+
@@ -31,7 +31,7 @@ function footerHTML(){
   '<footer><div class="wrap">'+
     '<div class="foot-grid">'+
       '<div>'+
-        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"> <span class="us">US</span></a>'+
+        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"></a>'+
         '<p class="desc">ProPeers Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
       '</div>'+
       '<div class="foot-col"><h5>Practices</h5>'+
