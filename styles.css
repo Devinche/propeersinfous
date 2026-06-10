@@ -53,8 +53,7 @@ header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
 header.scrolled{border-bottom-color:var(--line);background:rgba(10,13,20,.82)}
 nav{display:flex;align-items:center;justify-content:space-between;height:74px}
 .logo{display:flex;align-items:center;gap:11px;font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.02em}
-.logo .mark{display:grid;place-items:center;color:var(--acc);flex:none}
-.logo .mark svg{width:27px;height:34px}
+.logo .lockup{height:34px;width:auto;display:block;flex:none}
 .logo .us{font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--muted-2);
   border:1px solid var(--line-2);padding:2px 7px;border-radius:6px;font-family:var(--font-b)}
 .navlinks{display:flex;gap:34px;align-items:center}
@@ -294,8 +293,8 @@ body{animation:page-in .5s ease both}
 .navlinks a:hover::after,.navlinks a.active::after,.foot-col a:hover::after,.breadcrumb a:hover::after{right:0}
 
 /* logo micro-bounce */
-.logo .mark{transition:transform .45s cubic-bezier(.34,1.6,.4,1),box-shadow .3s}
-.logo:hover .mark{transform:rotate(-8deg) scale(1.08)}
+.logo .lockup{transition:transform .45s cubic-bezier(.34,1.6,.4,1)}
+.logo:hover .lockup{transform:scale(1.04)}
 
 /* marquee edge fade + hover pause */
 .strip{position:relative}
@@ -608,16 +607,8 @@ body{animation:page-in .5s ease both}
 /* ===================================================================
    LOGO WORDMARK + INTRO
 =================================================================== */
-.logo .word{font-family:var(--font-b);font-weight:500;font-size:21px;letter-spacing:0;color:#f7f7f3;margin-left:-5px}
-.logo .word::after{content:"TM";font-size:7px;font-weight:600;vertical-align:super;margin-left:2px;color:var(--muted-2)}
 .intro{position:fixed;inset:0;z-index:200;background:#000;display:grid;place-items:center;
   color:var(--acc);transition:opacity .6s ease}
 .intro.out{opacity:0;pointer-events:none}
-.intro svg{width:92px;height:115px}
-.intro .ring{stroke-dasharray:195;stroke-dashoffset:195;animation:intro-ring .8s ease-out forwards .15s}
-.intro .stem{stroke-dasharray:60;stroke-dashoffset:60;animation:intro-ring .35s ease-out forwards .9s}
-.intro .dot{transform-box:fill-box;transform-origin:center;transform:scale(0);
-  animation:intro-dot .45s cubic-bezier(.2,1.4,.4,1) forwards 1.15s}
-@keyframes intro-ring{to{stroke-dashoffset:0}}
-@keyframes intro-dot{to{transform:scale(1)}}
+.intro img{width:min(420px,72vw);height:auto}
 body.intro-hold{overflow:hidden}

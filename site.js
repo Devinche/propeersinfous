@@ -2,15 +2,11 @@
    Each page sets <body data-page="..."> and drops
    <div id="site-header"></div> + <div id="site-footer"></div>. */
 
-/* Brand mark: stylized "P" ring + dot, shared by the header, footer,
-   and any in-page mockups. */
-const LOGO_SVG='<svg viewBox="0 0 100 125" aria-hidden="true"><path d="M83.1 30.2 A38 38 0 1 0 83.1 73.8" fill="none" stroke="currentColor" stroke-width="21"/><path d="M14 52 L14 109" fill="none" stroke="currentColor" stroke-width="21" stroke-linecap="round"/><circle cx="52" cy="52" r="14" fill="currentColor"/></svg>';
-
 function headerHTML(active){
   const a=(href,label,key)=>'<a href="'+href+'"'+(active===key?' class="active"':'')+'>'+label+'</a>';
   return ''+
   '<header id="hdr"><div class="wrap"><nav>'+
-    '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span><span class="word">ropeers</span> <span class="us">US</span></a>'+
+    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"> <span class="us">US</span></a>'+
     '<div class="navlinks">'+
       a('what-we-do.html','What We Do','whatwedo')+
       a('about.html','Company','company')+
@@ -30,7 +26,7 @@ function footerHTML(){
   '<footer><div class="wrap">'+
     '<div class="foot-grid">'+
       '<div>'+
-        '<a href="index.html" class="logo"><span class="mark">'+LOGO_SVG+'</span><span class="word">ropeers</span> <span class="us">US</span></a>'+
+        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"> <span class="us">US</span></a>'+
         '<p class="desc">ProPeers Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
       '</div>'+
       '<div class="foot-col"><h5>Practices</h5>'+
@@ -135,17 +131,14 @@ function initIntro(){
   sessionStorage.setItem('ppi-intro','1');
   var o=document.createElement('div');
   o.className='intro';
-  o.innerHTML='<svg viewBox="0 0 100 125" aria-hidden="true">'+
-    '<path class="ring" d="M83.1 30.2 A38 38 0 1 0 83.1 73.8" fill="none" stroke="currentColor" stroke-width="21"/>'+
-    '<path class="stem" d="M14 52 L14 109" fill="none" stroke="currentColor" stroke-width="21" stroke-linecap="round"/>'+
-    '<circle class="dot" cx="52" cy="52" r="14" fill="currentColor"/></svg>';
+  o.innerHTML='<img src="assets/intro.gif" alt="" width="864" height="864">';
   document.body.appendChild(o);
   document.body.classList.add('intro-hold');
   setTimeout(function(){
     o.classList.add('out');
     document.body.classList.remove('intro-hold');
     setTimeout(function(){ o.remove(); },650);
-  },1900);
+  },2450);
 }
 
 /* ---- motion: cursor aura that eases toward the pointer ---- */
