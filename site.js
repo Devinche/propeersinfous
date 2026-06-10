@@ -4,7 +4,7 @@
 
 /* Brand mark: stylized "P" ring + dot, shared by the header, footer,
    and any in-page mockups. */
-const LOGO_SVG='<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8 A42 42 0 1 1 27 83" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round"/><circle cx="42" cy="50" r="14" fill="currentColor"/></svg>';
+const LOGO_SVG='<svg viewBox="0 0 100 125" aria-hidden="true"><path d="M83.1 30.2 A38 38 0 1 0 83.1 73.8" fill="none" stroke="currentColor" stroke-width="21"/><path d="M14 52 L14 109" fill="none" stroke="currentColor" stroke-width="21" stroke-linecap="round"/><circle cx="52" cy="52" r="14" fill="currentColor"/></svg>';
 
 function headerHTML(active){
   const a=(href,label,key)=>'<a href="'+href+'"'+(active===key?' class="active"':'')+'>'+label+'</a>';
@@ -135,16 +135,17 @@ function initIntro(){
   sessionStorage.setItem('ppi-intro','1');
   var o=document.createElement('div');
   o.className='intro';
-  o.innerHTML='<svg viewBox="0 0 100 100" aria-hidden="true">'+
-    '<path class="ring" d="M50 8 A42 42 0 1 1 27 83" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round"/>'+
-    '<circle class="dot" cx="42" cy="50" r="14" fill="currentColor"/></svg>';
+  o.innerHTML='<svg viewBox="0 0 100 125" aria-hidden="true">'+
+    '<path class="ring" d="M83.1 30.2 A38 38 0 1 0 83.1 73.8" fill="none" stroke="currentColor" stroke-width="21"/>'+
+    '<path class="stem" d="M14 52 L14 109" fill="none" stroke="currentColor" stroke-width="21" stroke-linecap="round"/>'+
+    '<circle class="dot" cx="52" cy="52" r="14" fill="currentColor"/></svg>';
   document.body.appendChild(o);
   document.body.classList.add('intro-hold');
   setTimeout(function(){
     o.classList.add('out');
     document.body.classList.remove('intro-hold');
     setTimeout(function(){ o.remove(); },650);
-  },1500);
+  },1900);
 }
 
 /* ---- motion: cursor aura that eases toward the pointer ---- */
