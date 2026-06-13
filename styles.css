@@ -327,8 +327,7 @@ footer p.desc{color:var(--muted);font-size:.95rem;margin-top:18px;max-width:300p
 .socials a{width:36px;height:36px;border:1px solid var(--line-2);border-radius:9px;
   display:grid;place-items:center;color:var(--muted);transition:.2s}
 .socials a:hover{border-color:var(--acc);color:var(--acc)}
-.socials svg{width:17px;height:17px;stroke:currentColor;fill:none;
-  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.socials svg{width:17px;height:17px}
 
 /* reveal anim */
 .reveal{opacity:0;transform:translateY(24px) scale(.985);filter:blur(6px);
