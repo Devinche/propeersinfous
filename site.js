@@ -38,17 +38,17 @@ function headerHTML(active){
     dropLink('contact.html','Start a Project',false);
 
   var company=
-    dropLink('about.html','About ProPeersInfo',active==='company')+
+    dropLink('about.html','About ProPeers',active==='company')+
     dropLink('https://propeersinfo.com','Parent Company ↗',false);
 
   return ''+
   '<div class="annc" id="annc"><div class="wrap">'+
-    '<span>ProPeersInfo Inc. is the new US arm of Professional Peers Info Services.</span>'+
+    '<span>ProPeers Inc. is the new US arm of Professional Peers Info Services.</span>'+
     '<a href="about.html">Read the story &rarr;</a>'+
     '<button id="annc-x" aria-label="Dismiss">&times;</button>'+
   '</div></div>'+
   '<header id="hdr"><div class="wrap"><nav>'+
-    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="ProPeersInfo"></a>'+
+    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="ProPeers"></a>'+
     '<div class="navlinks" id="navlinks">'+
       navItem('home','Home',active,home)+
       navItem('whatwedo','What We Do',active,services)+
@@ -68,8 +68,8 @@ function footerHTML(){
   '<footer><div class="wrap">'+
     '<div class="foot-grid">'+
       '<div>'+
-        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="ProPeersInfo"></a>'+
-        '<p class="desc">ProPeersInfo Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
+        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="ProPeers"></a>'+
+        '<p class="desc">ProPeers Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
       '</div>'+
       '<div class="foot-col"><h5>Practices</h5>'+
         '<a href="it-consulting.html">IT Consulting</a>'+
@@ -90,7 +90,7 @@ function footerHTML(){
       '</div>'+
     '</div>'+
     '<div class="foot-bottom">'+
-      '<span>&copy; 2026 ProPeersInfo Inc., a US company and the American arm of Professional Peers Info Services. All rights reserved.</span>'+
+      '<span>&copy; 2026 ProPeers Inc., a US company and the American arm of Professional Peers Info Services. All rights reserved.</span>'+
       '<div class="socials">'+
         '<a href="https://www.facebook.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>'+
         '<a href="https://twitter.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>'+
@@ -116,7 +116,7 @@ function submitContact(e){
 
   function fallbackToEmail(note){
     var name=(data.get('fullname')||'').toString().trim();
-    var subject=encodeURIComponent('Project inquiry from '+(name||'the ProPeersInfo website'));
+    var subject=encodeURIComponent('Project inquiry from '+(name||'the ProPeers website'));
     var body=encodeURIComponent(
       'Name: '+name+'\n'+
       'Email: '+(data.get('email')||'')+'\n'+
