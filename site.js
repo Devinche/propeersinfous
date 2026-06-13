@@ -2,24 +2,60 @@
    Each page sets <body data-page="..."> and drops
    <div id="site-header"></div> + <div id="site-footer"></div>. */
 
+var chevron='<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>';
+
+function navItem(key,label,active,dropHTML,wide){
+  var isActive=(active===key)||
+    (key==='whatwedo'&&['whatwedo'].indexOf(active)!==-1)||
+    (key==='company'&&active==='company')||
+    (key==='approach'&&active==='approach');
+  return '<div class="nav-item" data-key="'+key+'">'+
+    '<button class="nav-trigger'+(isActive?' active':'')+'" aria-haspopup="true" aria-expanded="false">'+
+      label+chevron+
+    '</button>'+
+    '<div class="nav-drop" role="menu">'+dropHTML+'</div>'+
+  '</div>';
+}
+
+function dropLink(href,label,active){
+  return '<a href="'+href+'" class="drop-item'+(active?' active':'')+'" role="menuitem">'+label+'</a>';
+}
+
 function headerHTML(active){
-  const a=(href,label,key)=>'<a href="'+href+'"'+(active===key?' class="active"':'')+'>'+label+'</a>';
+  var home=
+    dropLink('index.html','Home',active==='home')+
+    dropLink('index.html#pillars','Our Practices',false)+
+    dropLink('index.html#top','See the demo',false);
+
+  var services=
+    dropLink('what-we-do.html','All Services',active==='whatwedo')+
+    dropLink('it-consulting.html','IT Consulting',false)+
+    dropLink('ai-solutions.html','AI Platforming',false)+
+    dropLink('affiliate-marketing.html','Affiliate Marketing',false);
+
+  var approach=
+    dropLink('approach.html','How We Work',active==='approach')+
+    dropLink('contact.html','Start a Project',false);
+
+  var company=
+    dropLink('about.html','About ProPeersInfo',active==='company')+
+    dropLink('https://propeersinfo.com','Parent Company ↗',false);
+
   return ''+
   '<div class="annc" id="annc"><div class="wrap">'+
-    '<span>ProPeers Inc. is the new US arm of Professional Peers Info Services.</span>'+
+    '<span>ProPeersInfo Inc. is the new US arm of Professional Peers Info Services.</span>'+
     '<a href="about.html">Read the story &rarr;</a>'+
     '<button id="annc-x" aria-label="Dismiss">&times;</button>'+
   '</div></div>'+
   '<header id="hdr"><div class="wrap"><nav>'+
-    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"></a>'+
-    '<div class="navlinks">'+
-      a('what-we-do.html','What We Do','whatwedo')+
-      a('about.html','Company','company')+
-      a('approach.html','Approach','approach')+
-      a('contact.html','Contact','contact')+
+    '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="ProPeersInfo"></a>'+
+    '<div class="navlinks" id="navlinks">'+
+      navItem('home','Home',active,home)+
+      navItem('whatwedo','What We Do',active,services)+
+      navItem('approach','Approach',active,approach)+
+      navItem('company','Company',active,company)+
     '</div>'+
     '<div class="nav-cta">'+
-      '<a href="tel:+17817244137" class="btn btn-ghost">Talk to us &#9742;</a>'+
       '<a href="contact.html" class="btn btn-acc">Start a project</a>'+
       '<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>'+
     '</div>'+
@@ -31,8 +67,8 @@ function footerHTML(){
   '<footer><div class="wrap">'+
     '<div class="foot-grid">'+
       '<div>'+
-        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="Propeers"></a>'+
-        '<p class="desc">ProPeers Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
+        '<a href="index.html" class="logo"><img class="lockup" src="assets/logo.png" alt="ProPeersInfo"></a>'+
+        '<p class="desc">ProPeersInfo Inc. is the US subsidiary of Professional Peers Info Services. We handle the software and the AI inside it, plus the marketing that brings people in.</p>'+
       '</div>'+
       '<div class="foot-col"><h5>Practices</h5>'+
         '<a href="it-consulting.html">IT Consulting</a>'+
@@ -53,12 +89,12 @@ function footerHTML(){
       '</div>'+
     '</div>'+
     '<div class="foot-bottom">'+
-      '<span>&copy; 2026 ProPeers Inc., a US company and the American arm of Professional Peers Info Services. All rights reserved.</span>'+
+      '<span>&copy; 2026 ProPeersInfo Inc., a US company and the American arm of Professional Peers Info Services. All rights reserved.</span>'+
       '<div class="socials">'+
-        '<a href="https://www.facebook.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Facebook">f</a>'+
-        '<a href="https://twitter.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Twitter">&#120143;</a>'+
-        '<a href="https://www.instagram.com/propeersinfoinc" target="_blank" rel="noopener" aria-label="Instagram">ig</a>'+
-        '<a href="https://www.linkedin.com/in/propeersinfo-inc-03311a415/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>'+
+        '<a href="https://www.facebook.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>'+
+        '<a href="https://twitter.com/ProPeersInfo" target="_blank" rel="noopener" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>'+
+        '<a href="https://www.instagram.com/propeersinfoinc" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>'+
+        '<a href="https://www.linkedin.com/in/propeersinfo-inc-03311a415/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>'+
       '</div>'+
     '</div>'+
   '</div></footer>';
@@ -79,7 +115,7 @@ function submitContact(e){
 
   function fallbackToEmail(note){
     var name=(data.get('fullname')||'').toString().trim();
-    var subject=encodeURIComponent('Project inquiry from '+(name||'the ProPeers website'));
+    var subject=encodeURIComponent('Project inquiry from '+(name||'the ProPeersInfo website'));
     var body=encodeURIComponent(
       'Name: '+name+'\n'+
       'Email: '+(data.get('email')||'')+'\n'+
@@ -136,14 +172,47 @@ function initIntro(){
   sessionStorage.setItem('ppi-intro','1');
   var o=document.createElement('div');
   o.className='intro';
-  o.innerHTML='<img src="assets/intro.gif" alt="" width="864" height="864">';
+  var img=document.createElement('img');
+  img.src='assets/intro.gif';
+  img.alt='';
+  img.width=864;
+  img.height=864;
+  o.appendChild(img);
   document.body.appendChild(o);
   document.body.classList.add('intro-hold');
-  setTimeout(function(){
-    o.classList.add('out');
-    document.body.classList.remove('intro-hold');
-    setTimeout(function(){ o.remove(); },650);
-  },2450);
+
+  // Wait for GIF to be loaded AND at least one full loop to play.
+  // We use 3800ms as the minimum display time (covers a typical 2-4s logo loop).
+  var minWait=3800;
+  var start=Date.now();
+
+  function dismiss(){
+    var elapsed=Date.now()-start;
+    var remaining=Math.max(0, minWait-elapsed);
+    setTimeout(function(){
+      o.classList.add('out');
+      document.body.classList.remove('intro-hold');
+      setTimeout(function(){ o.remove(); },650);
+    }, remaining);
+  }
+
+  if(img.complete && img.naturalWidth>0){
+    dismiss();
+  } else {
+    img.addEventListener('load', dismiss);
+    img.addEventListener('error', function(){
+      // If GIF fails to load, still dismiss after minimum wait
+      dismiss();
+    });
+    // Fallback: force dismiss after 5s regardless
+    setTimeout(function(){
+      if(document.body.classList.contains('intro-hold')){
+        o.classList.add('out');
+        document.body.classList.remove('intro-hold');
+        setTimeout(function(){ if(o.parentNode) o.remove(); },650);
+      }
+    }, 5000);
+  }
 }
 
 /* ---- motion: cursor aura that eases toward the pointer ---- */
@@ -219,17 +288,33 @@ function initCountUp(){
 
 /* ---- motion: trigger demo showcases (charts, traces, chat, funnels) when they scroll into view ---- */
 function initShowcases(){
-  var sel='.demo-chart,.demo-trace,.demo-chat,.demo-funnel';
+  var sel='.demo-chart,.demo-trace,.demo-chat,.demo-funnel,.demo-funnel-svg';
   var nodes=document.querySelectorAll(sel);
   if(!nodes.length) return;
   var io=new IntersectionObserver(function(es){
     es.forEach(function(entry){
       if(!entry.isIntersecting) return;
       io.unobserve(entry.target);
-      entry.target.classList.add('in');
+      var parent=entry.target.closest('.reveal');
+      var delay=parent ? 600 : 0;
+      setTimeout(function(){
+        entry.target.classList.add('in');
+        // also trigger sprint bar which is a sibling in the same pane
+        var pane=entry.target.closest('.tab-pane');
+        if(pane){
+          pane.querySelectorAll('.ds-fill').forEach(function(el){
+            el.style.transform='scaleX('+( el.style.getPropertyValue('--w')||el.parentElement.style.getPropertyValue('--w')||'.76')+')';
+          });
+        }
+      }, delay);
     });
-  },{threshold:.35});
-  nodes.forEach(function(n){ io.observe(n); });
+  },{threshold:.1});
+  nodes.forEach(function(n){
+    var pane=n.closest('.tab-pane');
+    if(!pane || pane.classList.contains('on')){
+      io.observe(n);
+    }
+  });
 }
 
 /* ---- accent switcher: cycles the site's accent color, persisted locally ---- */
@@ -313,8 +398,13 @@ function initSite(){
         btn.classList.add('on'); btn.setAttribute('aria-selected','true');
         panes[i].classList.add('on');
         // demos in hidden panes never intersect, so kick their animation here
-        panes[i].querySelectorAll('.demo-chart,.demo-trace,.demo-chat,.demo-funnel').forEach(function(d){
+        panes[i].querySelectorAll('.demo-chart,.demo-trace,.demo-chat,.demo-funnel,.demo-funnel-svg').forEach(function(d){
           requestAnimationFrame(function(){ d.classList.add('in'); });
+        });
+        // also kick sprint bar
+        panes[i].querySelectorAll('.ds-fill').forEach(function(el){
+          var w=el.style.getPropertyValue('--w')||'.76';
+          requestAnimationFrame(function(){ el.style.transform='scaleX('+w+')'; });
         });
       });
     });
@@ -329,15 +419,42 @@ function initSite(){
     io.observe(elm);
   });
 
+  /* ---- nav dropdowns ---- */
+  var navItems=document.querySelectorAll('.nav-item');
+  function closeAll(){
+    navItems.forEach(function(ni){
+      ni.classList.remove('open');
+      var t=ni.querySelector('.nav-trigger');
+      if(t) t.setAttribute('aria-expanded','false');
+    });
+  }
+  navItems.forEach(function(ni){
+    var trigger=ni.querySelector('.nav-trigger');
+    if(!trigger) return;
+    trigger.addEventListener('click',function(e){
+      e.stopPropagation();
+      var isOpen=ni.classList.contains('open');
+      closeAll();
+      if(!isOpen){
+        ni.classList.add('open');
+        trigger.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  document.addEventListener('click', closeAll);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeAll(); });
+  // prevent clicks inside a dropdown from bubbling up and closing it
+  document.querySelectorAll('.nav-drop').forEach(function(drop){
+    drop.addEventListener('click',function(e){ e.stopPropagation(); });
+  });
+
+  /* ---- burger: toggle mobile nav ---- */
   var burger=document.getElementById('burger');
-  if(burger){
-    burger.addEventListener('click',function(){
-      var n=document.querySelector('.navlinks');
-      var open=n.style.display==='flex';
-      n.style.display=open?'none':'flex';
-      n.style.position='absolute';n.style.top='74px';n.style.left=0;n.style.right=0;
-      n.style.flexDirection='column';n.style.background='var(--ink-2)';
-      n.style.padding='20px 24px';n.style.borderBottom='1px solid var(--line)';n.style.gap='18px';
+  var navlinks=document.getElementById('navlinks');
+  if(burger && navlinks){
+    burger.addEventListener('click',function(e){
+      e.stopPropagation();
+      navlinks.classList.toggle('open');
     });
   }
 

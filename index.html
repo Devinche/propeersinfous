@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProPeers Inc. | IT Consulting, AI Solutions &amp; Affiliate Marketing</title>
-<meta name="description" content="ProPeers Inc. is the US arm of Professional Peers Info Services. IT consulting, AI builds, and affiliate marketing for clients in the States.">
+<title>ProPeersInfo Inc. | IT Consulting, AI Solutions &amp; Affiliate Marketing</title>
+<meta name="description" content="ProPeersInfo Inc. is the US arm of Professional Peers Info Services. IT consulting, AI builds, and affiliate marketing for clients in the States.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     <div>
       <span class="eyebrow reveal">US arm of Professional Peers Info</span>
       <h1 class="reveal">We build your software, and the <span class="hl">AI</span> that runs inside it.</h1>
-      <p class="lead reveal">ProPeers Inc. is the US side of Professional Peers Info Services. We've spent years shipping enterprise software, and now that same team handles AI builds and the affiliate marketing that brings you customers.</p>
+      <p class="lead reveal">ProPeersInfo Inc. is the US side of Professional Peers Info Services. We've spent years shipping enterprise software, and now that same team handles AI builds and the affiliate marketing that brings you customers.</p>
       <div class="hero-cta reveal">
         <a href="tel:+17817244137" class="btn btn-acc">Book a consultation &rarr;</a>
         <a href="what-we-do.html" class="btn btn-ghost">See what we do</a>
@@ -109,11 +109,13 @@
         <button class="tab-btn" role="tab" aria-selected="false">AI assistant</button>
         <button class="tab-btn" role="tab" aria-selected="false">Affiliate funnel</button>
       </div>
+
+      <!-- TAB 1: Delivery dashboard -->
       <div class="tab-pane on" role="tabpanel">
         <div class="demo-window">
           <div class="demo-bar">
             <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <span class="url"><i></i> propeers.dashboard / overview</span>
+            <span class="url"><i></i> propeersinfo.dashboard / overview</span>
           </div>
           <div class="demo-body">
             <div class="demo-pills">
@@ -121,14 +123,54 @@
               <div class="demo-pill"><div class="lab">Open tickets</div><div class="val"><i></i> 3</div></div>
               <div class="demo-pill"><div class="lab">Sprint progress</div><div class="val"><i></i> 82%</div></div>
             </div>
-            <div class="demo-chart" style="--n:7">
-              <i style="--h:.42"></i><i style="--h:.58"></i><i style="--h:.5"></i><i style="--h:.74"></i>
-              <i style="--h:.66"></i><i style="--h:.86"></i><i style="--h:.95"></i>
+            <!-- SVG line chart: uptime % over 28 days, synthetic data hovering around 99.9% -->
+            <div class="demo-linechart-wrap">
+              <div class="demo-linechart-ylabel">
+                <span>100%</span><span>99.9%</span><span>99.8%</span>
+              </div>
+              <div class="demo-linechart-area">
+                <svg class="demo-trace" viewBox="0 0 560 110" preserveAspectRatio="none">
+                  <!-- area fill under uptime line -->
+                  <defs>
+                    <linearGradient id="uptimeGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--acc)" stop-opacity="0.18"/>
+                      <stop offset="100%" stop-color="var(--acc)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path class="l-area" d="M0,22 C20,20 40,18 60,19 C80,20 100,24 120,22 C140,20 160,16 180,18 C200,20 220,26 240,24 C260,22 280,14 300,12 C320,10 340,16 360,14 C380,12 400,8 420,10 C440,12 460,18 480,16 C500,14 520,10 540,8 C548,7 554,6 560,6 L560,110 L0,110 Z" fill="url(#uptimeGrad)"/>
+                  <!-- uptime line -->
+                  <path class="l1" d="M0,22 C20,20 40,18 60,19 C80,20 100,24 120,22 C140,20 160,16 180,18 C200,20 220,26 240,24 C260,22 280,14 300,12 C320,10 340,16 360,14 C380,12 400,8 420,10 C440,12 460,18 480,16 C500,14 520,10 540,8 C548,7 554,6 560,6"/>
+                  <!-- incident marker -->
+                  <circle cx="240" cy="24" r="4" fill="var(--amber)"/>
+                  <!-- current endpoint -->
+                  <circle cx="560" cy="6" r="5" fill="var(--acc)"/>
+                </svg>
+                <div class="demo-chart-row" style="display:flex;justify-content:space-between;padding:0 2px">
+                  <span>W1</span><span>W2</span><span>W3</span><span>W4</span>
+                </div>
+              </div>
             </div>
-            <div class="demo-chart-row"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+            <!-- Sprint burndown mini section -->
+            <div class="demo-sprint-row">
+              <div class="demo-sprint-label">
+                <span class="ds-title">Sprint 14 burndown</span>
+                <span class="ds-sub">8 of 34 points remaining</span>
+              </div>
+              <div class="demo-sprint-bar">
+                <div class="ds-track"><div class="ds-fill" style="--w:.76"></div></div>
+                <span class="ds-pct">76%</span>
+              </div>
+            </div>
+            <div class="demo-ticket-list">
+              <div class="demo-ticket open"><span class="dt-dot"></span><span class="dt-text">Auth service latency spike — investigating</span><span class="dt-badge">P2</span></div>
+              <div class="demo-ticket done"><span class="dt-dot"></span><span class="dt-text">Deploy v2.4.1 to production</span><span class="dt-badge done">Done</span></div>
+              <div class="demo-ticket open"><span class="dt-dot"></span><span class="dt-text">Data pipeline backfill for EU region</span><span class="dt-badge">P3</span></div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- TAB 2: AI assistant -->
       <div class="tab-pane" role="tabpanel">
         <div class="demo-window">
           <div class="demo-bar">
@@ -138,13 +180,26 @@
           <div class="demo-body">
             <div class="demo-chat">
               <div class="demo-msg user">Why did the export job fail for the EU account last night?</div>
-              <div class="demo-msg bot">It hit a timeout at 11:42pm UTC. The dataset crossed the 2GB chunk limit introduced in last week's update.</div>
+              <div class="demo-msg bot">
+                It hit a timeout at 11:42pm UTC. The dataset crossed the 2GB chunk limit introduced in last week's update.
+                <div class="demo-source"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> runbook &mdash; export-pipeline §3.1</div>
+              </div>
               <div class="demo-msg user">Can it be re-run safely right now?</div>
-              <div class="demo-msg bot">Yes. Re-run with chunking enabled, or I can flag it to on-call if you'd rather a person confirm first.</div>
+              <div class="demo-msg bot">
+                Yes — re-run with <code class="demo-code">--chunk-size 512mb</code> flag. Or I can page on-call to confirm first.
+                <div class="demo-source"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> runbook &mdash; export-pipeline §4.2</div>
+              </div>
+            </div>
+            <div class="demo-ai-meta">
+              <div class="demo-ai-stat"><span class="dm-label">Response time</span><span class="dm-val">0.8s</span></div>
+              <div class="demo-ai-stat"><span class="dm-label">Sources cited</span><span class="dm-val">2 docs</span></div>
+              <div class="demo-ai-stat"><span class="dm-label">Confidence</span><span class="dm-val conf-high">High</span></div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- TAB 3: Affiliate funnel -->
       <div class="tab-pane" role="tabpanel">
         <div class="demo-window">
           <div class="demo-bar">
@@ -152,11 +207,39 @@
             <span class="url"><i></i> partners.report / funnel</span>
           </div>
           <div class="demo-body">
-            <div class="demo-funnel">
-              <div class="stage"><span class="lab">Clicks</span><span class="track"><span class="fill"></span></span><span class="pct">100%</span></div>
-              <div class="stage"><span class="lab">Sign-ups</span><span class="track"><span class="fill"></span></span><span class="pct">71%</span></div>
-              <div class="stage"><span class="lab">Trials</span><span class="track"><span class="fill"></span></span><span class="pct">44%</span></div>
-              <div class="stage"><span class="lab">Paid</span><span class="track"><span class="fill"></span></span><span class="pct">27%</span></div>
+            <div class="demo-funnel-grid">
+              <!-- Visual tapering funnel -->
+              <div class="demo-funnel-vis">
+                <svg class="demo-funnel-svg" viewBox="0 0 220 180" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="funnelG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="var(--acc)" stop-opacity=".9"/><stop offset="100%" stop-color="var(--acc-deep)"/></linearGradient>
+                    <linearGradient id="funnelG2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="var(--acc)" stop-opacity=".7"/><stop offset="100%" stop-color="var(--acc-deep)" stop-opacity=".7"/></linearGradient>
+                    <linearGradient id="funnelG3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="var(--acc)" stop-opacity=".5"/><stop offset="100%" stop-color="var(--acc-deep)" stop-opacity=".5"/></linearGradient>
+                    <linearGradient id="funnelG4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="var(--acc)" stop-opacity=".35"/><stop offset="100%" stop-color="var(--acc-deep)" stop-opacity=".35"/></linearGradient>
+                  </defs>
+                  <!-- Clicks: full width -->
+                  <rect class="fseg" x="10" y="4" width="200" height="34" rx="4" fill="url(#funnelG1)"/>
+                  <text x="110" y="25" text-anchor="middle" font-size="12" font-weight="700" fill="#0a0d14">12,400 clicks</text>
+                  <!-- Sign-ups: 71% -->
+                  <rect class="fseg" x="24" y="46" width="172" height="34" rx="4" fill="url(#funnelG2)"/>
+                  <text x="110" y="67" text-anchor="middle" font-size="12" font-weight="700" fill="#0a0d14">8,804 sign-ups</text>
+                  <!-- Trials: 44% -->
+                  <rect class="fseg" x="46" y="88" width="128" height="34" rx="4" fill="url(#funnelG3)"/>
+                  <text x="110" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="#0a0d14">5,456 trials</text>
+                  <!-- Paid: 27% -->
+                  <rect class="fseg" x="74" y="130" width="72" height="34" rx="4" fill="url(#funnelG4)"/>
+                  <text x="110" y="151" text-anchor="middle" font-size="12" font-weight="700" fill="var(--acc)">3,348 paid</text>
+                </svg>
+              </div>
+              <!-- Partner performance table -->
+              <div class="demo-partner-table">
+                <div class="dpt-head"><span>Partner</span><span>Conv.</span><span>Rev.</span></div>
+                <div class="dpt-row"><span class="dp-name"><i class="dp-dot" style="background:var(--acc)"></i>TechBlog Pro</span><span class="dp-conv">34%</span><span class="dp-rev">$14.2k</span></div>
+                <div class="dpt-row"><span class="dp-name"><i class="dp-dot" style="background:var(--blue)"></i>SaaS Weekly</span><span class="dp-conv">28%</span><span class="dp-rev">$9.8k</span></div>
+                <div class="dpt-row"><span class="dp-name"><i class="dp-dot" style="background:var(--amber)"></i>DevTools Hub</span><span class="dp-conv">21%</span><span class="dp-rev">$6.1k</span></div>
+                <div class="dpt-row"><span class="dp-name"><i class="dp-dot" style="background:var(--muted-2)"></i>CloudPodcast</span><span class="dp-conv">11%</span><span class="dp-rev">$2.4k</span></div>
+                <div class="dpt-total"><span>Total MRR</span><span></span><span>$32.5k</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -171,7 +254,7 @@
       <div class="phone">
         <div class="screen">
           <div class="pmark"><svg viewBox="0 0 100 125" aria-hidden="true"><path d="M83.1 30.2 A38 38 0 1 0 83.1 73.8" fill="none" stroke="currentColor" stroke-width="21"/><path d="M14 52 L14 109" fill="none" stroke="currentColor" stroke-width="21" stroke-linecap="round"/><circle cx="52" cy="52" r="14" fill="currentColor"/></svg></div>
-          <div class="pname">ProPeers Inc.<small>Build &middot; Ship &middot; Grow</small></div>
+          <div class="pname">ProPeersInfo Inc.<small>Build &middot; Ship &middot; Grow</small></div>
           <div class="pglow"></div>
         </div>
       </div>
@@ -231,7 +314,7 @@
       <p>Tell us what you're working on. We'll come back with a real plan and a straight answer on what it takes.</p>
       <div class="hero-cta">
         <a href="contact.html" class="btn btn-acc">Start a project &rarr;</a>
-        <a href="approach.html" class="btn btn-ghost">See how we work</a>
+        <a href="about.html" class="btn btn-ghost">About the team</a>
       </div>
     </div>
   </div>
