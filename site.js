@@ -84,7 +84,7 @@ function footerHTML(){
         '<a href="https://propeersinfo.com" target="_blank" rel="noopener">Parent Company &#8599;</a>'+
       '</div>'+
       '<div class="foot-col"><h5>Get in touch</h5>'+
-        '<p><a href="mailto:propeersinfoaffiliate@gmail.com">propeersinfoaffiliate@gmail.com</a></p>'+
+        '<p><a href="mailto:propeersinc@gmail.com">propeersinc@gmail.com</a></p>'+
         '<p><a href="tel:+17817244137">+1 781-724-4137</a></p>'+
         '<p>United States</p>'+
       '</div>'+
@@ -103,7 +103,7 @@ function footerHTML(){
 
 /* contact form -> submits straight to Formspree, which stores every message in
    a dashboard (acting as the database) and forwards it by email to
-   propeersinfoaffiliate@gmail.com. Swap the placeholder action URL in
+   propeersinc@gmail.com. Swap the placeholder action URL in
    contact.html for your real Formspree endpoint once the account is set up
    (see README). Falls back to opening the visitor's email client if no real
    endpoint is configured yet, or if the request fails. */
@@ -125,7 +125,7 @@ function submitContact(e){
       (data.get('message')||'')
     );
     if(status){status.textContent=note;}
-    window.location.href='mailto:propeersinfoaffiliate@gmail.com?subject='+subject+'&body='+body;
+    window.location.href='mailto:propeersinc@gmail.com?subject='+subject+'&body='+body;
   }
 
   if((form.getAttribute('action')||'').indexOf('your-form-id')!==-1){
@@ -145,7 +145,7 @@ function submitContact(e){
     })
     .catch(function(){
       if(btn){btn.disabled=false; btn.textContent='Send message →';}
-      fallbackToEmail('That didn’t go through, so we opened an email instead. Send it to propeersinfoaffiliate@gmail.com and we’ll pick it up from there.');
+      fallbackToEmail('That didn’t go through, so we opened an email instead. Send it to propeersinc@gmail.com and we’ll pick it up from there.');
     });
   return false;
 }
